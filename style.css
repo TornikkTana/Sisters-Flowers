@@ -427,6 +427,7 @@ section {
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background: transparent;
   border-radius: 16px;
   overflow: hidden;
@@ -441,7 +442,7 @@ section {
 .card-img-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   aspect-ratio: 4/5;
   overflow: hidden;
   border-radius: 12px;
@@ -484,6 +485,9 @@ section {
 
 .card-details {
   padding: 1.2rem 0.2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-name {
@@ -499,11 +503,20 @@ section {
   color: var(--blush);
 }
 
+.card-desc {
+  font-family: var(--font-body-ka);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--mist);
+  margin-bottom: 0.8rem;
+}
+
 .card-price {
   font-family: var(--font-body-en);
   font-size: 0.95rem;
   font-weight: 400;
   color: var(--mist);
+  margin-bottom: 0.8rem;
 }
 
 /* ── ABOUT ── */
@@ -1491,6 +1504,13 @@ footer {
   border-radius: 8px;
 }
 
+.cart-item-img-contain {
+  object-fit: contain !important;
+  background-color: #ffffff;
+  padding: 0;
+  border: 1px solid var(--parchment);
+}
+
 .cart-item-details {
   flex: 1;
   display: flex;
@@ -1823,7 +1843,7 @@ footer {
   padding: 0.65rem 1.5rem;
   border-radius: 30px;
   cursor: pointer;
-  margin-top: 0.8rem;
+  margin-top: auto;
   align-self: flex-start;
   transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
 }
@@ -1966,6 +1986,12 @@ footer {
   object-fit: cover;
   display: block;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stem-img-contain {
+  object-fit: contain !important;
+  background-color: #ffffff;
+  padding: 0;
 }
 
 .stem-card:hover .stem-img {
@@ -2117,5 +2143,88 @@ footer {
   .stems-grid, .other-flowers-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+/* ── Catalog Section and Grid ── */
+.catalog-section {
+  padding: 8rem 4.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 3rem 2rem;
+  margin-top: 3rem;
+}
+
+/* Ensure catalog cards do not inherit first-child Collections styling */
+.catalog-grid .card:first-child {
+  grid-row: auto;
+}
+.catalog-grid .card:first-child .card-img-container {
+  height: auto;
+  aspect-ratio: 4/5;
+}
+
+/* ── Catalog Filter Bar ── */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.filter-btn {
+  background: var(--cream);
+  border: 1px solid rgba(31, 54, 39, .1);
+  padding: 0.6rem 1.6rem;
+  border-radius: 30px;
+  font-family: var(--font-body-ka);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-btn:hover {
+  background: var(--moss);
+  color: #fff;
+  border-color: var(--moss);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: var(--moss);
+  color: #fff;
+  border-color: var(--moss);
+  box-shadow: 0 4px 12px rgba(31, 54, 39, 0.15);
+}
+
+/* Responsive Overrides for Catalog Page */
+@media (max-width: 1200px) {
+  .catalog-section {
+    padding: 8rem 4.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-section {
+    padding: 6rem 2rem;
+  }
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .filter-bar {
+    gap: 0.5rem;
+  }
+  .filter-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
   }
 }

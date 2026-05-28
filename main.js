@@ -6,7 +6,7 @@ const products = [
     name: "ბუჩქოვანი ვარდები",
     price: 65,
     tag: "ბესტსელერი",
-    img: "https://scontent.fkut1-1.fna.fbcdn.net/v/t51.75761-15/479492974_18061527571941147_5113698789666429090_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFdGLoB7nJWsdZw2NatX4rVanqjXUNzDypqeqNdQ3MPKjWM9N-WaJYxzsWiwXIoJeobwsje4Pb937QYoBffUxSX&_nc_ohc=CgHfye3cgkwQ7kNvwEJMH86&_nc_oc=AdoDPqP-QsxGObR28s-anqePuCqrOPCHVda4hVdCZGspRMgoQxMPTpBBHUUQeItIRVu9R9I0eRgb4hvcYaGtPDdH&_nc_zt=23&_nc_ht=scontent.fkut1-1.fna&_nc_gid=zeku2OWTlOytvr-RySS7-Q&_nc_ss=7b2a8&oh=00_Af4vOfuPcF8EWrghoz6Ntf38ZE4V9wDqmOsqKY9QZyimqw&oe=6A1B6F96"
+    img: "https://savvaflowers.pl/images/virtuemart/product/imgonline-com-ua-Resize-o7NtupIfcu59X0.jpg"
   },
   {
     id: 2,
@@ -46,60 +46,118 @@ const singleStems = [
     name: "წითელი ვარდი",
     price: 6,
     tag: "ყვავილი",
-    img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80"
+    img: "https://media.istockphoto.com/id/503592218/photo/long-stem-red-rose.jpg?s=612x612&w=0&k=20&c=yJ7kmr6goY2G5-OxJF69huAWcjsnqP0cEqlKEF0csTw=",
+    contain: true
   },
   {
     id: 102,
     name: "თეთრი ვარდი",
     price: 6,
     tag: "ყვავილი",
-    img: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=500&q=80"
+    img: "https://secretblooms.com.au/wp-content/uploads/2023/01/rose_lola_white.jpg",
+    contain: true
   },
   {
     id: 103,
     name: "ბუჩქოვანი ვარდი (ყვითელი)",
     price: 12,
     tag: "ბუჩქოვანი",
-    img: "https://images.unsplash.com/photo-1559734899-7f30dfad37b7?w=500&q=80"
+    img: "https://www.craftoutlet.com/cdn/shop/files/rose-lily-bush-yellow-2-63324yw.jpg?v=1750855215&width=2343"
   },
   {
     id: 104,
     name: "ჰოლანდიური ტიტა (ვარდისფერი)",
     price: 8,
     tag: "სეზონური",
-    img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=500&q=80"
+    img: "https://www.hollandsouvenirshop.nl/image/cache/catalog/Products/10-2020/houten-tulpen/houten-tulp-lila-steel-1000x1000.jpg.webp"
   },
   {
     id: 105,
     name: "პეონი (სამეფო)",
     price: 18,
     tag: "პრემიუმი",
-    img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&q=80"
+    img: "https://www.craftoutlet.com/cdn/shop/files/image_79026.jpg?v=1736170930"
   },
   {
     id: 106,
     name: "გიფსოფილა (თეთრი)",
     price: 10,
     tag: "დეკორი",
-    img: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&q=80"
+    img: "https://cdn.ecommercedns.uk/files/2/236502/2/51218312/3-png.jpg"
   },
   {
     id: 107,
     name: "ევკალიპტის ტოტი",
     price: 6,
     tag: "მწვანე",
-    img: "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=500&q=80"
+    img: "https://thesuffolknest.com/cdn/shop/files/artificial_blush_eucalyptus_stem.jpg?v=1778753576"
   },
   {
     id: 108,
     name: "დეკორატიული მწვანე ფოთლები",
     price: 4,
     tag: "მწვანე",
-    img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80"
+    img: "https://static.vecteezy.com/system/resources/thumbnails/060/595/438/small_2x/vine-with-lush-green-leaves-botanical-decoration-plant-stem-cut-out-transparent-png.png"
   },
   {
     id: 109,
-    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი",
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (ვარდისფერი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 110,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (შავი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 111,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (თეთრი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 112,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (კრემისფერი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 113,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (წითელი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 114,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (ცისფერი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 115,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (მწვანე)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 116,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (იასამნისფერი)",
+    price: 15,
+    tag: "აქსესუარი",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
+  },
+  {
+    id: 117,
+    name: "პრემიუმ შესაფუთი ქაღალდი და ლენტი (ნაცრისფერი)",
     price: 15,
     tag: "აქსესუარი",
     img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500&q=80"
@@ -140,11 +198,176 @@ const otherFlowers = [
   }
 ];
 
+// ── Products scraped from Wolt (Sisters Flower) mapped to IDs 301-320 ──
+const woltProducts = [
+  {
+    id: 301,
+    name: "ფერადი გერბერა",
+    price: 90,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილით ,უბრალოდ განსხვავებული ფერით",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/b5a05aec-679a-11eb-9109-86daa48a53e6_020_10____________________.jpeg"
+  },
+  {
+    id: 302,
+    name: "ფერადი სფრეი ვარდი 10 ცალი",
+    price: 225,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილით ,უბრალოდ განსხვავებული ფერით",
+    category: "ვარდი",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/b3a25068-99e1-11ec-bf27-121ad7d8dffe_b8184e5a_d560_4ae3_a480_2581786f0126.jpeg"
+  },
+  {
+    id: 303,
+    name: "ფერადი სფრეი ვარდი 20 ცალი",
+    price: 450,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილით ,უბრალოდ განსხვავებული ფერით",
+    category: "ვარდი",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/02519d7c-99e2-11ec-bdc5-a669878ebe30_5cb2c504_2759_4307_9b06_ec9b84ad4bb8.jpeg"
+  },
+  {
+    id: 304,
+    name: "იასამანი",
+    price: 36,
+    description: "თაიგული შეიძლება  იყოს ოდნავ განსხვავებუად შეფუთული",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://imageproxy.wolt.com/assets/69ddf7733c7046e2a6b0d4e3"
+  },
+  {
+    id: 305,
+    name: "იასამანი",
+    price: 76.5,
+    description: "თაიგული შეიძლება  იყოს ოდნავ განსხვავებუად შეფუთული",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://imageproxy.wolt.com/assets/69ddf8173c7046e2a6b0d51d"
+  },
+  {
+    id: 306,
+    name: "პიონი თეთრი 10 ტოტი",
+    price: 146,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/66872054-b73a-11eb-8fc2-5aaa095ba78d_d9fa1434_11a3_4636_ba3b_7c3f3153e029.jpeg"
+  },
+  {
+    id: 307,
+    name: "პიონი ბორდოსფერი (5 ცალი)",
+    price: 75,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/31457b8e-b73f-11eb-a737-2a8d0e13ea00_edb7962d_dc16_44d4_946c_03465da3262b.jpeg"
+  },
+  {
+    id: 308,
+    name: "პიონი ვარდისფერი  (10 ცალი)",
+    price: 150,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/0284a244-b73e-11eb-8379-0ed4f51f4122_c02d6e75_0568_4599_adfc_38f5928e7ef2.jpeg"
+  },
+  {
+    id: 309,
+    name: "პიონი ფერადი (10 ცალი)",
+    price: 150,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/327a256e-b73e-11eb-b109-6a8cc970b139_f4cecfe5_c17f_4ced_8b07_c8d0bf2269f1.jpeg"
+  },
+  {
+    id: 310,
+    name: "მზესუმზირა",
+    price: 170,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/22af55c4-ba8f-11eb-9822-ce2a3612ebdf_119f183f_1c07_430c_b73b_490625a6d8ae.jpeg"
+  },
+  {
+    id: 311,
+    name: "ვარდისფერი წინწკალა",
+    price: 45,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/659c879c-bd57-11eb-bd51-d6af14e2c848_img_6687.jpeg"
+  },
+  {
+    id: 312,
+    name: "გვირილა",
+    price: 35,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/e4008b38-bd57-11eb-ba16-760ae1832846_img_6701.jpeg"
+  },
+  {
+    id: 313,
+    name: "ჯუჯა ვარდების კომპოზიცია",
+    price: 300,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "კომპოზიცია",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/bd6d5daa-ba8e-11eb-bbfe-96f1120dbef2_e401332d_5dd1_4868_b7ca_8c2b57aaf932.jpeg"
+  },
+  {
+    id: 314,
+    name: "ალსტრომერია 5 ცალი",
+    price: 50,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/43230686-99a8-11ec-b39b-724deb917915_4ea3e472_5da8_45c4_820a_bcd539c6b5f8.jpeg"
+  },
+  {
+    id: 315,
+    name: "ალსტრომერია 10 ცალი",
+    price: 90,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/03305f10-99df-11ec-941d-32a37afc7823_454be6cc_11cd_4065_9565_408ab1a0aa84.jpeg"
+  },
+  {
+    id: 316,
+    name: "ალსტრომერია 15 ცალი",
+    price: 135,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/3e74dc04-99df-11ec-998e-f64168bbb6ad_b8d0883b_cb27_4bc3_8be8_36d13a7d3672.jpeg"
+  },
+  {
+    id: 317,
+    name: "ალსტრომერია 20 ცალი",
+    price: 160,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ყვავილები",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/8c7c44dc-99df-11ec-8368-d23fe09513b9_9846080d_5400_45d3_bf6a_1a38c4a7e4e6.jpeg"
+  },
+  {
+    id: 318,
+    name: "ფერადი სფრეი ვარდი 5 ცალი",
+    price: 112,
+    description: "თაიგულში არსებული ყვავილები,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ვარდი",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/f8717fa2-9a63-11ec-be2e-f6efd6caef2b_da263b80_55a9_45d7_b2a4_0441a828962f.jpeg"
+  },
+  {
+    id: 319,
+    name: "ფერადი სფრეი ვარდი 15 ცალი",
+    price: 337,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "ვარდი",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/4a99ba98-99eb-11ec-b1c3-32a37afc7823_0b206642_2195_462d_824f_1cd89e318e5c.jpeg"
+  },
+  {
+    id: 320,
+    name: "პიონი ( 20 ცალი)",
+    price: 300,
+    description: "თაიგულში არსებული ყვავილები ,შესაძლოა ჩანაცვლდეს იგივე ყვავილებით ,უბრალოდ განსხვავებული ფერით ასევე თაიგული შეიძლება იყოს ოდნავ განსხვავებუად შეფუთული.",
+    category: "შეიგრძენი გაზაფხული",
+    img: "https://wolt-menu-images-cdn.wolt.com/menu-images/601d162ee51465f991cb5ee1/a633c75a-0f9a-11ef-bc03-6a1bdf2cb007_img_8329.jpeg"
+  }
+];
+
 // ── Helper to find an item across all product database arrays ──
 function getItemDetails(id) {
-  return products.find(p => p.id === id) || 
-         singleStems.find(s => s.id === id) || 
-         otherFlowers.find(o => o.id === id);
+  return products.find(p => p.id === id) ||
+    singleStems.find(s => s.id === id) ||
+    otherFlowers.find(o => o.id === id) ||
+    woltProducts.find(w => w.id === id);
 }
 
 // ── Shopping Cart State ──
@@ -181,10 +404,12 @@ function renderSingleStems() {
   singleStems.forEach((stem, index) => {
     const card = document.createElement('div');
     card.className = `stem-card reveal reveal-delay-${index % 3}`;
-    
+
+    const imgClass = stem.contain ? 'stem-img stem-img-contain' : 'stem-img';
+
     card.innerHTML = `
       <div class="stem-img-container">
-        <img class="stem-img" src="${stem.img}" alt="${stem.name}" />
+        <img class="${imgClass}" src="${stem.img}" alt="${stem.name}" />
         <span class="stem-tag">${stem.tag}</span>
       </div>
       <div class="stem-details">
@@ -278,11 +503,11 @@ function renderOtherFlowers() {
 function renderCollections() {
   if (!collectionsGrid) return;
   collectionsGrid.innerHTML = '';
-  
+
   products.forEach((product, index) => {
     const card = document.createElement('div');
     card.className = `card reveal reveal-delay-${index % 3}`;
-    
+
     card.innerHTML = `
       <div class="card-img-container">
         <img class="card-img" src="${product.img}" alt="${product.name}" />
@@ -294,14 +519,14 @@ function renderCollections() {
         <button class="card-btn-add" data-id="${product.id}">კალათაში დამატება</button>
       </div>
     `;
-    
+
     // Add to Cart Event Listener
     card.querySelector('.card-btn-add').addEventListener('click', (e) => {
       e.preventDefault();
       const id = parseInt(e.target.getAttribute('data-id'));
       addToCart(id);
     });
-    
+
     collectionsGrid.appendChild(card);
   });
 
@@ -349,11 +574,11 @@ function calculateTotal() {
 function updateCart() {
   // Save to localStorage
   localStorage.setItem('flowersCart', JSON.stringify(cart));
-  
+
   // Render Badge
   const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   cartBadge.textContent = totalItemsCount;
-  
+
   // Render Cart List
   if (cart.length === 0) {
     cartItemsList.innerHTML = '<div class="cart-empty-message">კალათა ცარიელია</div>';
@@ -361,15 +586,17 @@ function updateCart() {
   } else {
     cartItemsList.innerHTML = '';
     cartDrawerFooter.style.display = 'block';
-    
+
     cart.forEach(item => {
       const product = getItemDetails(item.productId);
       if (!product) return;
-      
+
+      const imgClass = product.contain ? 'cart-item-img cart-item-img-contain' : 'cart-item-img';
+
       const itemRow = document.createElement('div');
       itemRow.className = 'cart-item';
       itemRow.innerHTML = `
-        <img src="${product.img}" alt="${product.name}" class="cart-item-img" />
+        <img src="${product.img}" alt="${product.name}" class="${imgClass}" />
         <div class="cart-item-details">
           <h4 class="cart-item-name">${product.name}</h4>
           <span class="cart-item-price">₾ ${product.price}</span>
@@ -381,16 +608,16 @@ function updateCart() {
         </div>
         <button class="cart-item-remove" data-id="${product.id}">✕</button>
       `;
-      
+
       // Quantity Buttons Listeners
       itemRow.querySelector('.qty-minus').addEventListener('click', () => updateQuantity(product.id, -1));
       itemRow.querySelector('.qty-plus').addEventListener('click', () => updateQuantity(product.id, 1));
       // Remove Button Listener
       itemRow.querySelector('.cart-item-remove').addEventListener('click', () => removeFromCart(product.id));
-      
+
       cartItemsList.appendChild(itemRow);
     });
-    
+
     // Render Total Price
     cartTotalPrice.textContent = `₾ ${calculateTotal()}`;
   }
@@ -418,7 +645,7 @@ function toggleModal(modal, isOpen) {
 // ── Checkout Flow ──
 function handleCheckoutSubmit(e) {
   e.preventDefault();
-  
+
   const clientName = document.getElementById('clientName').value.trim();
   const clientPhone = document.getElementById('clientPhone').value.trim();
   const deliveryAddress = document.getElementById('deliveryAddress').value.trim();
@@ -426,21 +653,21 @@ function handleCheckoutSubmit(e) {
   const deliveryTime = document.getElementById('deliveryTime').value;
   const cardText = document.getElementById('cardText').value.trim();
   const paymentMethodVal = document.getElementById('paymentMethod').value;
-  
+
   const paymentText = paymentMethodVal === 'bank_transfer' ? 'საბანკო გადარიცხვა' : 'ნაღდი/ბარათი კურიერთან';
   const total = calculateTotal();
-  
+
   // Detect if order has custom stems for WhatsApp special instructions
   const hasCustomStems = cart.some(item => singleStems.some(s => s.id === item.productId));
-  
+
   // 1. Build dynamic receipt inside success modal
   let summaryHtml = `
     <div class="order-summary-title">${hasCustomStems ? 'შეკვეთილი პროდუქტები:' : 'შეკვეთილი თაიგულები:'}</div>
   `;
-  
+
   let whatsappText = `გამარჯობა, მსურს ყვავილების შეკვეთა:\n\n`;
   whatsappText += `🌸 *შეკვეთა:*\n`;
-  
+
   cart.forEach(item => {
     const product = getItemDetails(item.productId);
     if (product) {
@@ -453,7 +680,7 @@ function handleCheckoutSubmit(e) {
       whatsappText += `- ${product.name} x ${item.quantity} (₾ ${product.price * item.quantity})\n`;
     }
   });
-  
+
   summaryHtml += `
     <div class="order-summary-total">
       <span>სულ ჯამი:</span>
@@ -461,34 +688,34 @@ function handleCheckoutSubmit(e) {
     </div>
   `;
   whatsappText += `\n💵 *სულ ჯამი:* ₾ ${total}\n\n`;
-  
+
   whatsappText += `👤 *კლიენტის ინფორმაცია:*\n`;
   whatsappText += `სახელი: ${clientName}\n`;
   whatsappText += `ტელეფონი: ${clientPhone}\n`;
   whatsappText += `მისამართი: ${deliveryAddress}\n`;
   whatsappText += `მიტანის თარიღი: ${deliveryDate} / ${deliveryTime}\n`;
-  
+
   if (cardText) {
     whatsappText += `✉️ *მისალოცი ბარათის ტექსტი:*\n"${cardText}"\n`;
   }
   whatsappText += `💳 *გადახდის მეთოდი:* ${paymentText}\n`;
-  
+
   if (hasCustomStems) {
     whatsappText += `\n⚠️ *მნიშვნელოვანი შენიშვნა ფლორისტს:*\nგთხოვთ, ეს ცალკეული ყვავილების ღეროები ააწყოთ ერთ თაიგულად და მიწოდებამდე გამომიგზავნოთ ფოტო WhatsApp-ში! 📸\n`;
   }
-  
+
   orderSummaryBox.innerHTML = summaryHtml;
-  
+
   // 2. Set WhatsApp Link
   const whatsappUrl = `https://wa.me/995577779326?text=${encodeURIComponent(whatsappText)}`;
   successWhatsappBtn.onclick = () => window.open(whatsappUrl, '_blank');
-  
+
   // 3. Clear Cart & Reset Form
   cart = [];
   updateCart();
   checkoutForm.reset();
   document.getElementById('clientPhone').value = "+995 ";
-  
+
   // 4. Toggle Modals
   toggleModal(checkoutModal, false);
   toggleModal(successModal, true);
@@ -533,13 +760,77 @@ const obs = new IntersectionObserver(entries => {
 
 revealEls.forEach(el => obs.observe(el));
 
+// ── Render Catalog Grid ──
+function renderCatalog(filter = 'all') {
+  const catalogGrid = document.getElementById('catalogGrid');
+  if (!catalogGrid) return;
+  catalogGrid.innerHTML = '';
+
+  let filtered = woltProducts;
+  if (filter === 'roses') {
+    filtered = woltProducts.filter(p => p.category === 'ვარდი' || p.name.includes('ვარდი'));
+  } else if (filter === 'peonies') {
+    filtered = woltProducts.filter(p => p.name.includes('პიონი'));
+  } else if (filter === 'alstroemerias') {
+    filtered = woltProducts.filter(p => p.name.includes('ალსტრომერია'));
+  } else if (filter === 'seasonal') {
+    filtered = woltProducts.filter(p => p.category === 'შეიგრძენი გაზაფხული' || p.name.includes('იასამანი') || p.name.includes('გვირილა') || p.name.includes('წინწკალა'));
+  }
+
+  filtered.forEach((product, index) => {
+    const card = document.createElement('div');
+    card.className = `card reveal reveal-delay-${index % 3}`;
+
+    card.innerHTML = `
+      <div class="card-img-container">
+        <img class="card-img" src="${product.img}" alt="${product.name}" />
+        <span class="card-tag">${product.price >= 150 ? 'პრემიუმი' : 'პოპულარული'}</span>
+      </div>
+      <div class="card-details">
+        <h3 class="card-name">${product.name}</h3>
+        <p class="card-desc" style="font-size: 0.85rem; color: var(--text-muted, #777); margin-bottom: 0.8rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8rem;">${product.description}</p>
+        <p class="card-price">₾ ${product.price}</p>
+        <button class="card-btn-add" data-id="${product.id}">კალათაში დამატება</button>
+      </div>
+    `;
+
+    // Add to Cart Event Listener
+    card.querySelector('.card-btn-add').addEventListener('click', (e) => {
+      e.preventDefault();
+      addToCart(product.id);
+    });
+
+    catalogGrid.appendChild(card);
+  });
+
+  // Re-observe dynamic entries for scroll reveals
+  if (typeof obs !== 'undefined') {
+    document.querySelectorAll('#catalogGrid .reveal').forEach(el => obs.observe(el));
+  }
+}
+
 // ── Initialization ──
 document.addEventListener('DOMContentLoaded', () => {
   renderCollections();
   renderSingleStems();
   renderOtherFlowers();
+  renderCatalog();
   updateCart();
-  
+
+  // Set up filter buttons for catalog
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-category');
+        renderCatalog(category);
+      });
+    });
+  }
+
   // Set default min date to today for checkout
   const dateInput = document.getElementById('deliveryDate');
   if (dateInput) {

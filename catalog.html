@@ -4,15 +4,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ააწყვე საკუთარი თაიგული — Sisters' Flowers | ყვავილების კონსტრუქტორი</title>
+  <title>სრული ასორტიმენტი — Sisters' Flowers | ყვავილების კატალოგი თბილისი</title>
   <meta name="description"
-    content="ააწყვეთ თქვენი თაიგული ღერობით Sisters' Flowers-ის ყვავილების კონსტრუქტორში. შეარჩიეთ სასურველი ყვავილები, რაოდენობა და შესაფუთი მასალა." />
+    content="იხილეთ Sisters' Flowers-ის ყვავილების სრული კატალოგი. ფერადი გერბერები, პიონები, ალსტრომერიები, სეზონური და სხვა ექსკლუზიური თაიგულები სწრაფი მიწოდებით თბილისში." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+Georgian:wght@300;400;500;600&family=Noto+Sans+Georgian:wght@300;400;500&family=Outfit:wght@300;400;500&family=Tenor+Sans&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Premium Catalog Page specific styles */
+    .catalog-hero {
+      padding: 12rem 4.5rem 6rem;
+      background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
+      text-align: center;
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .catalog-hero-title {
+      font-family: var(--font-heading-en);
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--moss);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
+    }
+
+    .catalog-hero-title-ka {
+      font-family: var(--font-heading-ka);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .catalog-hero-desc {
+      font-family: var(--font-body-ka);
+      font-size: 1.05rem;
+      color: var(--mist);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .catalog-hero {
+        padding: 8rem 2rem 4rem;
+      }
+
+      .catalog-hero-title {
+        font-size: 2.5rem;
+      }
+
+      .catalog-hero-title-ka {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -22,11 +75,10 @@
     <a href="index.html" class="nav-logo">Sisters' Flowers</a>
     <ul class="nav-links">
       <li><a href="index.html#collections">კოლექციები</a></li>
-      <li><a href="catalog.html">სრული ასორტიმენტი</a></li>
-      <li><a href="custom.html" class="active">საკუთარი თაიგული</a></li>
+      <li><a href="catalog.html" class="active">სრული ასორტიმენტი</a></li>
+      <li><a href="custom.html">საკუთარი თაიგული</a></li>
       <li><a href="index.html#about">ჩვენს შესახებ</a></li>
       <li><a href="index.html#services">სერვისები</a></li>
-      <li><a href="index.html#seasonal">სეზონური</a></li>
     </ul>
     <div class="nav-actions">
       <button class="nav-cart-btn" id="cartBtn" aria-label="კალათა">
@@ -41,50 +93,31 @@
     </div>
   </nav>
 
-  <!-- CUSTOM HERO HEADER -->
-  <section class="custom-hero">
-    <div class="custom-hero-content">
-      <p class="hero-eyebrow">ყვავილების კონსტრუქტორი · Stem-by-Stem Builder</p>
-      <h1 class="custom-hero-title">Build Your<br />Own Bouquet</h1>
-      <h2 class="custom-hero-title-ka">შექმენი შენი თაიგული</h2>
-      <p class="custom-hero-desc">
-        შეარჩიეთ სათითაო ყვავილის ღერო სასურველი რაოდენობით, დაამატეთ შესაფუთი ქაღალდი და ჩვენი ფლორისტები გააცოცხლებენ
-        თქვენს ჩანაფიქრს. შეკვეთის გაფორმების შემდეგ, WhatsApp-ით გამოგიგზავნით თაიგულის საბოლოო ვერსიის ფოტოს
-        გაგზავნამდე.
-      </p>
-      <div class="custom-hero-actions">
-        <button class="btn-primary"
-          onclick="document.getElementById('stemBuilderSection').scrollIntoView({behavior: 'smooth'})"><span>აწყობის დაწყება</span></button>
-        <a href="#otherFlowersSection" class="btn-ghost" style="text-decoration:none; display:inline-block; text-align:center; line-height:3rem;">სხვა ყვავილები</a>
-      </div>
-    </div>
+  <!-- HERO HEADER -->
+  <section class="catalog-hero">
+    <p class="hero-eyebrow" style="margin-bottom: 1.2rem;">ჩვენი ყვავილების სრული მენიუ · Sisters' Flowers Catalog</p>
+    <h1 class="catalog-hero-title">Our Full Catalog</h1>
+    <h2 class="catalog-hero-title-ka">სრული ასორტიმენტი</h2>
+    <p class="catalog-hero-desc">
+      აღმოაჩინეთ ახალი, სათუთად შერჩეული და ექსკლუზიური თაიგულები პირდაპირ ჩვენი სალონიდან.
+      შეარჩიეთ სასურველი ყვავილები და გააფორმეთ 24/7 მიტანის სერვისით თბილისში.
+    </p>
   </section>
 
-  <!-- STEM BUILDER SECTION -->
-  <section class="stem-builder-section" id="stemBuilderSection">
-    <div class="collections-header reveal">
-      <span class="section-label">— ნაბიჯი 1: შეარჩიეთ ღეროები</span>
-      <h2 class="section-title">Single Stems</h2>
-      <p class="section-title-ka">ყვავილები ღერობით — შექმენით უნიკალური კომბინაცია</p>
+  <!-- CATALOG SECTION -->
+  <section class="catalog-section">
+    <!-- Category Filter Bar -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-category="all">ყველა ყვავილი</button>
+      <button class="filter-btn" data-category="roses">ვარდები</button>
+      <button class="filter-btn" data-category="peonies">პიონები</button>
+      <button class="filter-btn" data-category="alstroemerias">ალსტრომერიები</button>
+      <button class="filter-btn" data-category="seasonal">სეზონური</button>
     </div>
 
-    <!-- STEM BUILDER GRID -->
-    <div class="stems-grid" id="stemsGrid">
-      <!-- Dynamically populated via main.js with image, price, title, and quantity inputs -->
-    </div>
-  </section>
-
-  <!-- BLANK CATALOG SECTION (FOR USER TO FILL) -->
-  <section class="other-flowers-section" id="otherFlowersSection">
-    <div class="collections-header reveal">
-      <span class="section-label">— ნაბიჯი 2 (სურვილისამებრ): სხვა კომპოზიციები</span>
-      <h2 class="section-title">Other Flowers</h2>
-      <p class="section-title-ka">ჩვენი სხვა თაიგულები და ყუთები (შეგიძლიათ შეცვალოთ main.js-ში)</p>
-    </div>
-
-    <!-- OTHER FLOWERS GRID -->
-    <div class="other-flowers-grid" id="otherFlowersGrid">
-      <!-- Dynamically populated via main.js. Blank/customizable slots for user -->
+    <!-- Catalog Grid -->
+    <div class="catalog-grid" id="catalogGrid">
+      <!-- Dynamically populated via main.js with all 20 Wolt flowers -->
     </div>
   </section>
 
@@ -133,7 +166,7 @@
     </div>
   </footer>
 
-  <!-- CART DRAWER (synced) -->
+  <!-- CART DRAWER -->
   <div class="cart-backdrop" id="cartBackdrop"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-drawer-header">
@@ -154,7 +187,7 @@
     </div>
   </div>
 
-  <!-- CHECKOUT MODAL (synced) -->
+  <!-- CHECKOUT MODAL -->
   <div class="modal-backdrop" id="checkoutModal">
     <div class="modal-content">
       <button class="modal-close-btn" id="checkoutCloseBtn" aria-label="დახურვა">✕</button>
@@ -211,7 +244,7 @@
     </div>
   </div>
 
-  <!-- SUCCESS MODAL (synced) -->
+  <!-- SUCCESS MODAL -->
   <div class="modal-backdrop" id="successModal">
     <div class="modal-content success-content">
       <button class="modal-close-btn" id="successCloseBtnX" aria-label="დახურვა">✕</button>
