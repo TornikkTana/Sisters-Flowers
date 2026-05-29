@@ -2468,6 +2468,145 @@ footer {
   opacity: 1;
 }
 
+/* ── WRAPPING SELECTOR SECTION ── */
+.wrap-selector-section {
+  padding: 6rem 8rem 2rem;
+  background: var(--pale);
+  border-top: 1px solid var(--parchment);
+  text-align: center;
+}
+
+.wrap-container {
+  max-width: 800px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.wrap-selector-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.wrap-color-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  position: relative;
+  outline: none;
+}
+
+.wrap-color-circle:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.wrap-color-circle.active {
+  transform: scale(1.15);
+  border-color: var(--moss);
+  box-shadow: 0 0 0 4px var(--cream), 0 8px 20px rgba(31, 54, 39, 0.2);
+}
+
+/* For white/light wrapper circle to distinguish it */
+.wrap-color-circle.border-accent {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.wrap-color-circle.border-accent.active {
+  border: 2px solid var(--moss);
+}
+
+.selected-wrap-info {
+  font-family: var(--font-body-ka);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+/* ── AI DRAFT STYLING ── */
+.ai-draft-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(31, 54, 39, 0.08);
+  padding-top: 1.2rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-heading-ka);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--moss);
+}
+
+.ai-draft-total {
+  font-size: 1.35rem;
+  font-weight: bold;
+}
+
+.ai-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 1.2rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.ai-finalize-btn {
+  background: var(--blush);
+  color: var(--cream);
+  border: none;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(199, 130, 117, 0.15);
+}
+
+.ai-finalize-btn:hover:not(.disabled) {
+  background: var(--moss);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(31, 54, 39, 0.25);
+}
+
+.ai-finalize-btn.disabled {
+  background: var(--mist);
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ai-summary-item.wrap-item {
+  background: rgba(199, 130, 117, 0.05);
+  border: 1px dashed rgba(199, 130, 117, 0.2);
+}
+
+@media (max-width: 768px) {
+  .wrap-selector-section {
+    padding: 4rem 2rem 1.5rem;
+  }
+  .wrap-color-circle {
+    width: 44px;
+    height: 44px;
+  }
+  .ai-action-buttons {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}
+
 /* Responsive Overrides for AI Visualizer */
 @media (max-width: 992px) {
   .ai-container {

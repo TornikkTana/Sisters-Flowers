@@ -330,7 +330,30 @@ const woltProducts = [
 ];
 
 // ── Helper to find an item across all product database arrays ──
+let customBouquets = JSON.parse(localStorage.getItem('customBouquets')) || [];
+
+const wrapColors = {
+  109: { hex: "#ECA1A6", name: "ვარდისფერი შესაფუთი ქაღალდი და ლენტი", label: "ვარდისფერი" },
+  110: { hex: "#1F1F1F", name: "შავი შესაფუთი ქაღალდი და ლენტი", label: "შავი" },
+  111: { hex: "#FFFFFF", name: "თეთრი შესაფუთი ქაღალდი და ლენტი", label: "თეთრი" },
+  112: { hex: "#EAD2AC", name: "კრემისფერი შესაფუთი ქაღალდი და ლენტი", label: "კრემისფერი" },
+  113: { hex: "#B83E3D", name: "წითელი შესაფუთი ქაღალდი და ლენტი", label: "წითელი" },
+  114: { hex: "#A1C6EA", name: "ცისფერი შესაფუთი ქაღალდი და ლენტი", label: "ცისფერი" },
+  115: { hex: "#86A397", name: "მწვანე შესაფუთი ქაღალდი და ლენტი", label: "მწვანე" },
+  116: { hex: "#D4B2D8", name: "იასამნისფერი შესაფუთი ქაღალდი და ლენტი", label: "იასამნისფერი" },
+  117: { hex: "#A3A9A6", name: "ნაცრისფერი შესაფუთი ქაღალდი და ლენტი", label: "ნაცრისფერი" }
+};
+
+let builderState = {
+  stems: {}, // { id: quantity }
+  wrapId: 109, // default to Pink wrapping paper
+  aiImageUrl: null
+};
+
 function getItemDetails(id) {
+  if (id >= 1000000) {
+    return customBouquets.find(cb => cb.id === id);
+  }
   return products.find(p => p.id === id) ||
     singleStems.find(s => s.id === id) ||
     woltProducts.find(w => w.id === id);
@@ -367,11 +390,15 @@ function renderSingleStems() {
   if (!stemsGrid) return;
   stemsGrid.innerHTML = '';
 
-  singleStems.forEach((stem, index) => {
+  // Only render flowers, not wrapping papers (which are IDs >= 109)
+  const flowers = singleStems.filter(stem => stem.id < 109);
+
+  flowers.forEach((stem, index) => {
     const card = document.createElement('div');
     card.className = `stem-card reveal reveal-delay-${index % 3}`;
 
     const imgClass = stem.contain ? 'stem-img stem-img-contain' : 'stem-img';
+    const currentQty = builderState.stems[stem.id] || 0;
 
     card.innerHTML = `
       <div class="stem-img-container">
@@ -384,39 +411,37 @@ function renderSingleStems() {
         <div class="stem-action-row">
           <div class="stem-qty-selector">
             <button class="stem-qty-btn stem-qty-minus">—</button>
-            <span class="stem-qty-val" id="qty-val-${stem.id}">1</span>
+            <span class="stem-qty-val" id="qty-val-${stem.id}">${currentQty}</span>
             <button class="stem-qty-btn stem-qty-plus">+</button>
           </div>
-          <button class="stem-btn-add" data-id="${stem.id}">კალათაში დამატება</button>
         </div>
       </div>
     `;
 
-    // Local quantity buttons listeners
     const qtyValEl = card.querySelector(`#qty-val-${stem.id}`);
-    let selectedQty = 1;
 
     card.querySelector('.stem-qty-minus').addEventListener('click', (e) => {
       e.preventDefault();
-      if (selectedQty > 1) {
-        selectedQty--;
-        qtyValEl.textContent = selectedQty;
+      let qty = builderState.stems[stem.id] || 0;
+      if (qty > 0) {
+        qty--;
+        if (qty === 0) {
+          delete builderState.stems[stem.id];
+        } else {
+          builderState.stems[stem.id] = qty;
+        }
+        qtyValEl.textContent = qty;
+        updateAIVisualizerSummary();
       }
     });
 
     card.querySelector('.stem-qty-plus').addEventListener('click', (e) => {
       e.preventDefault();
-      selectedQty++;
-      qtyValEl.textContent = selectedQty;
-    });
-
-    // Add to Cart with selected quantity
-    card.querySelector('.stem-btn-add').addEventListener('click', (e) => {
-      e.preventDefault();
-      addToCart(stem.id, selectedQty);
-      // Reset card selection quantity to 1 after addition
-      selectedQty = 1;
-      qtyValEl.textContent = 1;
+      let qty = builderState.stems[stem.id] || 0;
+      qty++;
+      builderState.stems[stem.id] = qty;
+      qtyValEl.textContent = qty;
+      updateAIVisualizerSummary();
     });
 
     stemsGrid.appendChild(card);
@@ -525,10 +550,12 @@ function updateCart() {
 
       const itemRow = document.createElement('div');
       itemRow.className = 'cart-item';
+      const descHtml = product.isCustomBouquet ? `<p class="cart-item-desc" style="font-size: 0.78rem; color: #555; margin: 3px 0 6px 0; line-height: 1.3;">${product.description}</p>` : '';
       itemRow.innerHTML = `
         <img src="${product.img}" alt="${product.name}" class="${imgClass}" />
         <div class="cart-item-details">
           <h4 class="cart-item-name">${product.name}</h4>
+          ${descHtml}
           <span class="cart-item-price">₾ ${product.price}</span>
           <div class="cart-item-quantity">
             <button class="qty-btn qty-minus" data-id="${product.id}">-</button>
@@ -592,8 +619,11 @@ function handleCheckoutSubmit(e) {
   const paymentText = paymentMethodVal === 'bank_transfer' ? 'საბანკო გადარიცხვა' : 'ნაღდი/ბარათი კურიერთან';
   const total = calculateTotal();
 
-  // Detect if order has custom stems for WhatsApp special instructions
-  const hasCustomStems = cart.some(item => singleStems.some(s => s.id === item.productId));
+  // Detect if order has custom stems (or custom bouquets) for WhatsApp special instructions
+  const hasCustomStems = cart.some(item => {
+    const product = getItemDetails(item.productId);
+    return (product && product.isCustomBouquet) || singleStems.some(s => s.id === item.productId);
+  });
 
   // 1. Build dynamic receipt inside success modal
   let summaryHtml = `
@@ -606,13 +636,33 @@ function handleCheckoutSubmit(e) {
   cart.forEach(item => {
     const product = getItemDetails(item.productId);
     if (product) {
-      summaryHtml += `
-        <div class="order-summary-item">
-          <span>${product.name} (x${item.quantity})</span>
-          <span>₾ ${product.price * item.quantity}</span>
-        </div>
-      `;
-      whatsappText += `- ${product.name} x ${item.quantity} (₾ ${product.price * item.quantity})\n`;
+      if (product.isCustomBouquet) {
+        summaryHtml += `
+          <div class="order-summary-item" style="flex-direction: column; align-items: flex-start; gap: 4px; border-bottom: 1px dashed rgba(20,28,22,0.05); padding-bottom: 6px; margin-bottom: 6px;">
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <strong>${product.name} (x${item.quantity})</strong>
+              <strong>₾ ${product.price * item.quantity}</strong>
+            </div>
+            <div style="font-size: 0.8rem; color: #555;">
+              შემადგენლობა: ${product.description}
+            </div>
+            ${product.img.includes('pollinations.ai') ? `<div style="font-size: 0.78rem; color: #c78275;">✨ AI ვიზუალიზაცია ჩართულია</div>` : ''}
+          </div>
+        `;
+        whatsappText += `- *${product.name}* x ${item.quantity} (₾ ${product.price * item.quantity})\n`;
+        whatsappText += `  └ შემადგენლობა: ${product.description}\n`;
+        if (product.img.includes('pollinations.ai')) {
+          whatsappText += `  └ 🖼️ AI ვიზუალი: ${product.img}\n`;
+        }
+      } else {
+        summaryHtml += `
+          <div class="order-summary-item">
+            <span>${product.name} (x${item.quantity})</span>
+            <span>₾ ${product.price * item.quantity}</span>
+          </div>
+        `;
+        whatsappText += `- ${product.name} x ${item.quantity} (₾ ${product.price * item.quantity})\n`;
+      }
     }
   });
 
@@ -777,6 +827,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (aiGenBtn) {
     aiGenBtn.addEventListener('click', handleAIVisualization);
   }
+  const aiFinalizeBtn = document.getElementById('aiFinalizeBtn');
+  if (aiFinalizeBtn) {
+    aiFinalizeBtn.addEventListener('click', addCustomBouquetToCart);
+  }
+  renderWrapSelector();
   updateAIVisualizerSummary();
 });
 
@@ -804,33 +859,120 @@ const stemPromptMap = {
 function updateAIVisualizerSummary() {
   const aiSummaryList = document.getElementById('aiSummaryList');
   const aiGenBtn = document.getElementById('aiGenBtn');
-  if (!aiSummaryList || !aiGenBtn) return;
+  const aiFinalizeBtn = document.getElementById('aiFinalizeBtn');
+  const aiDraftTotal = document.getElementById('aiDraftTotal');
+  if (!aiSummaryList || !aiGenBtn || !aiFinalizeBtn || !aiDraftTotal) return;
 
-  const stemItems = cart.filter(item => singleStems.some(s => s.id === item.productId));
+  const stemIds = Object.keys(builderState.stems).map(Number);
+  const hasStems = stemIds.length > 0;
 
-  if (stemItems.length === 0) {
-    aiSummaryList.innerHTML = '<div class="ai-summary-empty">თქვენი თაიგული ცარიელია. აირჩიეთ ყვავილები ზემოთ მოცემული სიიდან და დაამატეთ კალათაში.</div>';
+  if (!hasStems) {
+    aiSummaryList.innerHTML = '<div class="ai-summary-empty">თქვენი თაიგული ცარიელია. აირჩიეთ ყვავილები ზემოთ მოცემული სიიდან.</div>';
     aiGenBtn.disabled = true;
     aiGenBtn.classList.add('disabled');
+    aiFinalizeBtn.disabled = true;
+    aiFinalizeBtn.classList.add('disabled');
+    aiDraftTotal.textContent = '₾ 0';
     return;
   }
 
   aiGenBtn.disabled = false;
   aiGenBtn.classList.remove('disabled');
+  aiFinalizeBtn.disabled = false;
+  aiFinalizeBtn.classList.remove('disabled');
   aiSummaryList.innerHTML = '';
 
-  stemItems.forEach(item => {
-    const product = getItemDetails(item.productId);
+  let totalPrice = 0;
+
+  stemIds.forEach(id => {
+    const qty = builderState.stems[id];
+    const product = getItemDetails(id);
     if (!product) return;
+
+    totalPrice += product.price * qty;
 
     const row = document.createElement('div');
     row.className = 'ai-summary-item';
     row.innerHTML = `
       <span>${product.name}</span>
-      <span class="ai-summary-qty">x${item.quantity}</span>
+      <span class="ai-summary-qty">x${qty} (₾ ${product.price * qty})</span>
     `;
     aiSummaryList.appendChild(row);
   });
+
+  if (builderState.wrapId) {
+    const wrapProduct = getItemDetails(builderState.wrapId);
+    if (wrapProduct) {
+      totalPrice += wrapProduct.price;
+      const wrapRow = document.createElement('div');
+      wrapRow.className = 'ai-summary-item wrap-item';
+      wrapRow.innerHTML = `
+        <span>✨ შეფუთვა: ${wrapProduct.name.replace('პრემიუმ შესაფუთი ქაღალდი და ლენტი ', '')}</span>
+        <span class="ai-summary-qty">₾ ${wrapProduct.price}</span>
+      `;
+      aiSummaryList.appendChild(wrapRow);
+    }
+  }
+
+  aiDraftTotal.textContent = `₾ ${totalPrice}`;
+}
+
+function renderWrapSelector() {
+  const wrapRow = document.getElementById('wrapSelectorRow');
+  const wrapNameEl = document.getElementById('selectedWrapName');
+  if (!wrapRow || !wrapNameEl) return;
+
+  wrapRow.innerHTML = '';
+
+  const wrappingPapers = singleStems.filter(s => s.id >= 109 && s.id <= 117);
+
+  wrappingPapers.forEach(wrap => {
+    const info = wrapColors[wrap.id] || { hex: "#ccc", name: wrap.name, label: "სხვა" };
+    const colorBtn = document.createElement('button');
+    colorBtn.className = 'wrap-color-circle';
+    if (wrap.id === builderState.wrapId) {
+      colorBtn.classList.add('active');
+      wrapNameEl.textContent = `${info.name}`;
+    }
+    colorBtn.style.backgroundColor = info.hex;
+    colorBtn.title = info.name;
+    colorBtn.setAttribute('aria-label', info.name);
+
+    if (info.hex.toUpperCase() === '#FFFFFF') {
+      colorBtn.classList.add('border-accent');
+    }
+
+    colorBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      builderState.wrapId = wrap.id;
+      
+      document.querySelectorAll('.wrap-color-circle').forEach(btn => btn.classList.remove('active'));
+      colorBtn.classList.add('active');
+      wrapNameEl.textContent = `${info.name}`;
+
+      updateAIVisualizerSummary();
+    });
+
+    wrapRow.appendChild(colorBtn);
+  });
+}
+
+function calculateDraftPrice() {
+  let price = 0;
+  Object.keys(builderState.stems).forEach(id => {
+    const qty = builderState.stems[id];
+    const stemItem = getItemDetails(Number(id));
+    if (stemItem) {
+      price += stemItem.price * qty;
+    }
+  });
+  if (builderState.wrapId) {
+    const wrapItem = getItemDetails(builderState.wrapId);
+    if (wrapItem) {
+      price += wrapItem.price;
+    }
+  }
+  return price;
 }
 
 function handleAIVisualization() {
@@ -840,22 +982,26 @@ function handleAIVisualization() {
   
   if (!aiLoader || !aiPlaceholder || !aiGeneratedImg) return;
 
-  const stemItems = cart.filter(item => singleStems.some(s => s.id === item.productId));
-  if (stemItems.length === 0) return;
+  const stemIds = Object.keys(builderState.stems).map(Number);
+  if (stemIds.length === 0) return;
 
   const flowerDescriptions = [];
   let wrappingDescription = '';
 
-  stemItems.forEach(item => {
-    const promptWord = stemPromptMap[item.productId];
+  stemIds.forEach(id => {
+    const promptWord = stemPromptMap[id];
     if (!promptWord) return;
 
-    if (item.productId >= 109 && item.productId <= 117) {
-      wrappingDescription = `wrapped in premium ${promptWord} with a matching silk ribbon`;
-    } else {
-      flowerDescriptions.push(`${item.quantity} ${promptWord}`);
-    }
+    const qty = builderState.stems[id];
+    flowerDescriptions.push(`${qty} ${promptWord}`);
   });
+
+  if (builderState.wrapId) {
+    const promptWord = stemPromptMap[builderState.wrapId];
+    if (promptWord) {
+      wrappingDescription = `wrapped in premium ${promptWord} with a matching silk ribbon`;
+    }
+  }
 
   let itemsText = flowerDescriptions.join(', ');
   if (!itemsText) {
@@ -880,6 +1026,7 @@ function handleAIVisualization() {
     aiLoader.style.display = 'none';
     aiGeneratedImg.src = generatorUrl;
     aiGeneratedImg.style.display = 'block';
+    builderState.aiImageUrl = generatorUrl; // Cache the generated URL!
     setTimeout(() => {
       aiGeneratedImg.classList.add('loaded');
     }, 50);
@@ -889,4 +1036,69 @@ function handleAIVisualization() {
     aiPlaceholder.style.display = 'flex';
     alert('ვერ მოხერხდა სურათის გენერირება. გთხოვთ სცადოთ მოგვიანებით.');
   };
+}
+
+function addCustomBouquetToCart() {
+  const stemIds = Object.keys(builderState.stems).map(Number);
+  if (stemIds.length === 0) return;
+
+  const customId = Date.now();
+  const flowerDetailsList = [];
+  let descriptionParts = [];
+  
+  stemIds.forEach(id => {
+    const qty = builderState.stems[id];
+    const stemItem = getItemDetails(id);
+    if (stemItem) {
+      flowerDetailsList.push(`${stemItem.name} (x${qty})`);
+      descriptionParts.push(`${qty} ცალი ${stemItem.name}`);
+    }
+  });
+
+  if (builderState.wrapId) {
+    const wrapItem = getItemDetails(builderState.wrapId);
+    if (wrapItem) {
+      const wrapName = wrapItem.name.replace('პრემიუმ შესაფუთი ქაღალდი და ლენტი ', '');
+      descriptionParts.push(`შეფუთვა: ${wrapName}`);
+    }
+  }
+
+  const descText = descriptionParts.join(', ');
+  const defaultBouquetImg = "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80";
+
+  const customBouquetProduct = {
+    id: customId,
+    name: "ინდივიდუალური თაიგული",
+    price: calculateDraftPrice(),
+    description: descText,
+    category: "საკუთარი თაიგული",
+    img: builderState.aiImageUrl || defaultBouquetImg,
+    contain: true,
+    isCustomBouquet: true,
+    components: flowerDetailsList
+  };
+
+  customBouquets.push(customBouquetProduct);
+  localStorage.setItem('customBouquets', JSON.stringify(customBouquets));
+
+  addToCart(customId, 1);
+
+  // Reset draft state after successful addition
+  builderState.stems = {};
+  builderState.aiImageUrl = null;
+
+  // Reset the UI
+  renderSingleStems();
+  updateAIVisualizerSummary();
+
+  const aiPlaceholder = document.getElementById('aiPlaceholder');
+  const aiGeneratedImg = document.getElementById('aiGeneratedImg');
+  if (aiPlaceholder && aiGeneratedImg) {
+    aiPlaceholder.style.display = 'flex';
+    aiGeneratedImg.style.display = 'none';
+    aiGeneratedImg.src = '';
+    aiGeneratedImg.classList.remove('loaded');
+  }
+
+  alert('თაიგული წარმატებით დაემატა კალათაში!');
 }

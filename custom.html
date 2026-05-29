@@ -82,12 +82,30 @@
     </div>
   </section>
 
+  <!-- WRAPPING SELECTOR SECTION -->
+  <section class="wrap-selector-section" id="wrapSelectorSection">
+    <div class="collections-header reveal">
+      <span class="section-label">— ნაბიჯი 2: შეარჩიეთ შესაფუთი ქაღალდი</span>
+      <h2 class="section-title">Premium Wrapping</h2>
+      <p class="section-title-ka">შეარჩიეთ თაიგულის შეფუთვის ფერი</p>
+    </div>
+
+    <div class="wrap-container reveal">
+      <div class="wrap-selector-row" id="wrapSelectorRow">
+        <!-- Dynamically populated via main.js with elegant color circles -->
+      </div>
+      <div class="selected-wrap-info">
+        შერჩეულია: <strong id="selectedWrapName">ვარდისფერი შესაფუთი ქაღალდი</strong> (+₾ 15)
+      </div>
+    </div>
+  </section>
+
   <!-- AI VISUALIZER SECTION -->
   <section class="ai-visualizer-section" id="aiVisualizerSection">
     <div class="collections-header reveal">
-      <span class="section-label">— ნაბიჯი 2: AI ვიზუალიზაცია (Nano Banana)</span>
+      <span class="section-label">— ნაბიჯი 3: AI ვიზუალიზაცია & კალათა</span>
       <h2 class="section-title">AI Bouquet Preview</h2>
-      <p class="section-title-ka">დაინახეთ თქვენი თაიგული რეალობაში ხელოვნური ინტელექტის დახმარებით</p>
+      <p class="section-title-ka">დაინახეთ თქვენი თაიგული რეალობაში და დაამატეთ კალათაში</p>
     </div>
 
     <div class="ai-container">
@@ -97,14 +115,23 @@
           <div class="ai-summary-list" id="aiSummaryList">
             <!-- Dynamically populated list of selected flowers -->
           </div>
+          <div class="ai-draft-total-row">
+            <span>თაიგულის ჯამი:</span>
+            <span class="ai-draft-total" id="aiDraftTotal">₾ 0</span>
+          </div>
         </div>
         <div class="ai-details-bottom">
           <p class="ai-disclaimer">
-            * გენერირებისთვის საჭიროა კალათაში გქონდეთ დამატებული ყვავილები ღერობით.
+            * შეარჩიეთ ყვავილების რაოდენობა და შესაფუთი ქაღალდის ფერი. როდესაც ვერსია მოგეწონებათ, დააჭირეთ „კალათაში დამატებას“.
           </p>
-          <button class="btn-primary ai-gen-btn" id="aiGenBtn">
-            <span>✨ თაიგულის ვიზუალიზაცია (AI)</span>
-          </button>
+          <div class="ai-action-buttons">
+            <button class="btn-ghost ai-gen-btn" id="aiGenBtn">
+              <span>✨ თაიგულის ვიზუალიზაცია (AI)</span>
+            </button>
+            <button class="btn-primary ai-finalize-btn disabled" id="aiFinalizeBtn" disabled>
+              <span>🛒 კალათაში დამატება</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -117,7 +144,7 @@
               <circle cx="12" cy="12" r="4" />
               <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
             </svg>
-            <p class="ai-placeholder-text">დაამატეთ ყვავილები კალათაში და დააჭირეთ გენერირებას</p>
+            <p class="ai-placeholder-text">მიუთითეთ ყვავილების რაოდენობა ზემოთ და დააჭირეთ გენერირებას</p>
           </div>
           
           <!-- Loading Spinner -->
