@@ -164,39 +164,6 @@ const singleStems = [
   }
 ];
 
-// ── Other Flowers & Arrangements (Blank/Custom Catalog Template) ──
-// Edit this array below to add new flower arrangements, boxes, or baskets.
-// We've pre-populated 4 gorgeous slots that you can easily edit or change.
-const otherFlowers = [
-  {
-    id: 201,
-    name: "საგაზაფხულო ყვავილების ყუთი",
-    price: 75,
-    tag: "სეზონური",
-    img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?w=500&q=80"
-  },
-  {
-    id: 202,
-    name: "პრემიუმ ვარდების კალათა",
-    price: 120,
-    tag: "პრემიუმი",
-    img: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=500&q=80"
-  },
-  {
-    id: 203,
-    name: "გიფსოფილების ნაზი თაიგული",
-    price: 60,
-    tag: "ჰიტი",
-    img: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&q=80"
-  },
-  {
-    id: 204,
-    name: "კოპწია ყვავილების ყუთი",
-    price: 90,
-    tag: "დეკორი",
-    img: "https://images.unsplash.com/photo-1587334206506-696668478d1f?w=500&q=80"
-  }
-];
 
 // ── Products scraped from Wolt (Sisters Flower) mapped to IDs 301-320 ──
 const woltProducts = [
@@ -366,7 +333,6 @@ const woltProducts = [
 function getItemDetails(id) {
   return products.find(p => p.id === id) ||
     singleStems.find(s => s.id === id) ||
-    otherFlowers.find(o => o.id === id) ||
     woltProducts.find(w => w.id === id);
 }
 
@@ -462,42 +428,6 @@ function renderSingleStems() {
   }
 }
 
-// ── Render Other Flowers Catalog Grid (custom.html) ──
-function renderOtherFlowers() {
-  const otherFlowersGrid = document.getElementById('otherFlowersGrid');
-  if (!otherFlowersGrid) return;
-  otherFlowersGrid.innerHTML = '';
-
-  otherFlowers.forEach((flower, index) => {
-    const card = document.createElement('div');
-    card.className = `card reveal reveal-delay-${index % 3}`;
-
-    card.innerHTML = `
-      <div class="card-img-container">
-        <img class="card-img" src="${flower.img}" alt="${flower.name}" />
-        <span class="card-tag">${flower.tag}</span>
-      </div>
-      <div class="card-details">
-        <h3 class="card-name">${flower.name}</h3>
-        <p class="card-price">₾ ${flower.price}</p>
-        <button class="card-btn-add" data-id="${flower.id}">კალათაში დამატება</button>
-      </div>
-    `;
-
-    // Add to Cart
-    card.querySelector('.card-btn-add').addEventListener('click', (e) => {
-      e.preventDefault();
-      addToCart(flower.id, 1);
-    });
-
-    otherFlowersGrid.appendChild(card);
-  });
-
-  // Re-observe dynamic entries for scroll reveals
-  if (typeof obs !== 'undefined') {
-    document.querySelectorAll('.other-flowers-grid .reveal').forEach(el => obs.observe(el));
-  }
-}
 
 // ── Render Collections Grid ──
 function renderCollections() {
@@ -788,7 +718,7 @@ function renderCatalog(filter = 'all') {
       </div>
       <div class="card-details">
         <h3 class="card-name">${product.name}</h3>
-        <p class="card-desc" style="font-size: 0.85rem; color: var(--text-muted, #777); margin-bottom: 0.8rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8rem;">${product.description}</p>
+        <p class="card-desc">${product.description}</p>
         <p class="card-price">₾ ${product.price}</p>
         <button class="card-btn-add" data-id="${product.id}">კალათაში დამატება</button>
       </div>
@@ -813,7 +743,6 @@ function renderCatalog(filter = 'all') {
 document.addEventListener('DOMContentLoaded', () => {
   renderCollections();
   renderSingleStems();
-  renderOtherFlowers();
   renderCatalog();
   updateCart();
 

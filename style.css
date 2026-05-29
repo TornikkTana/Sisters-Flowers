@@ -506,9 +506,28 @@ section {
 .card-desc {
   font-family: var(--font-body-ka);
   font-size: 0.85rem;
-  line-height: 1.5;
+  line-height: 1.4;
   color: var(--mist);
+  margin-bottom: 0;
+  
+  /* Hide and collapse by default */
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  
+  /* Smooth transitions */
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease,
+              margin-bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .card-desc {
+  max-height: 10rem; /* Large enough to display the full text without cutting off */
+  opacity: 1;
   margin-bottom: 0.8rem;
+  transform: translateY(0);
 }
 
 .card-price {
@@ -1941,17 +1960,12 @@ footer {
   animation: fadeUp .9s 1s forwards;
 }
 
-.stem-builder-section, .other-flowers-section {
+.stem-builder-section {
   padding: 8rem 8rem;
   background: var(--pale);
 }
 
-.other-flowers-section {
-  background: var(--cream);
-  border-top: 1px solid var(--parchment);
-}
-
-.stems-grid, .other-flowers-grid {
+.stems-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2.5rem;
@@ -2127,7 +2141,7 @@ footer {
   .custom-hero {
     padding: 10rem 4.5rem 5rem;
   }
-  .stem-builder-section, .other-flowers-section {
+  .stem-builder-section {
     padding: 6rem 4.5rem;
   }
 }
@@ -2137,10 +2151,10 @@ footer {
     padding: 8rem 2rem 4rem;
     min-height: auto;
   }
-  .stem-builder-section, .other-flowers-section {
+  .stem-builder-section {
     padding: 5rem 2rem;
   }
-  .stems-grid, .other-flowers-grid {
+  .stems-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
