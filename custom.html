@@ -42,18 +42,28 @@
 
   <!-- CUSTOM HERO HEADER -->
   <section class="custom-hero">
-    <div class="custom-hero-content">
-      <p class="hero-eyebrow">ყვავილების კონსტრუქტორი · Stem-by-Stem Builder</p>
-      <h1 class="custom-hero-title">Build Your<br />Own Bouquet</h1>
-      <h2 class="custom-hero-title-ka">შექმენი შენი თაიგული</h2>
-      <p class="custom-hero-desc">
-        შეარჩიეთ სათითაო ყვავილის ღერო სასურველი რაოდენობით, დაამატეთ შესაფუთი ქაღალდი და ჩვენი ფლორისტები გააცოცხლებენ
-        თქვენს ჩანაფიქრს. შეკვეთის გაფორმების შემდეგ, WhatsApp-ით გამოგიგზავნით თაიგულის საბოლოო ვერსიის ფოტოს
-        გაგზავნამდე.
-      </p>
-      <div class="custom-hero-actions">
-        <button class="btn-primary"
-          onclick="document.getElementById('stemBuilderSection').scrollIntoView({behavior: 'smooth'})"><span>დაიწყე</span></button>
+    <div class="custom-hero-left">
+      <div class="custom-hero-content">
+        <p class="hero-eyebrow">ყვავილების კონსტრუქტორი · Stem-by-Stem Builder</p>
+        <h1 class="custom-hero-title">Build Your<br />Own Bouquet</h1>
+        <h2 class="custom-hero-title-ka">შექმენი შენი თაიგული</h2>
+        <p class="custom-hero-desc">
+          შეარჩიეთ სათითაო ყვავილის ღერო სასურველი რაოდენობით, დაამატეთ შესაფუთი ქაღალდი და ჩვენი ფლორისტები
+          გააცოცხლებენ
+          თქვენს ჩანაფიქს. შეკვეთის გაფორმების შემდეგ, WhatsApp-ით გამოგიგზავნით თაიგულის საბოლოო ვერსიის ფოტოს
+          გაგზავნამდე.
+        </p>
+        <div class="custom-hero-actions">
+          <button class="btn-primary"
+            onclick="document.getElementById('stemBuilderSection').scrollIntoView({behavior: 'smooth'})"><span>დაიწყე</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="custom-hero-right">
+      <div class="custom-hero-image-wrapper">
+        <!-- REPLACE THE SRC ATTRIBUTE BELOW WITH YOUR OWN PICTURE PATH -->
+        <img class="custom-hero-img" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80"
+          alt="შექმენი შენი თაიგული" />
       </div>
     </div>
   </section>
@@ -69,6 +79,57 @@
     <!-- STEM BUILDER GRID -->
     <div class="stems-grid" id="stemsGrid">
       <!-- Dynamically populated via main.js with image, price, title, and quantity inputs -->
+    </div>
+  </section>
+
+  <!-- AI VISUALIZER SECTION -->
+  <section class="ai-visualizer-section" id="aiVisualizerSection">
+    <div class="collections-header reveal">
+      <span class="section-label">— ნაბიჯი 2: AI ვიზუალიზაცია (Nano Banana)</span>
+      <h2 class="section-title">AI Bouquet Preview</h2>
+      <p class="section-title-ka">დაინახეთ თქვენი თაიგული რეალობაში ხელოვნური ინტელექტის დახმარებით</p>
+    </div>
+
+    <div class="ai-container">
+      <div class="ai-details-panel">
+        <div class="ai-details-top">
+          <h3 class="ai-panel-title">თქვენი თაიგულის შემადგენლობა:</h3>
+          <div class="ai-summary-list" id="aiSummaryList">
+            <!-- Dynamically populated list of selected flowers -->
+          </div>
+        </div>
+        <div class="ai-details-bottom">
+          <p class="ai-disclaimer">
+            * გენერირებისთვის საჭიროა კალათაში გქონდეთ დამატებული ყვავილები ღერობით.
+          </p>
+          <button class="btn-primary ai-gen-btn" id="aiGenBtn">
+            <span>✨ თაიგულის ვიზუალიზაცია (AI)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ai-preview-panel">
+        <div class="ai-preview-frame" id="aiPreviewFrame">
+          <!-- Visualizer Placeholder -->
+          <div class="ai-placeholder" id="aiPlaceholder">
+            <svg class="ai-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
+            <p class="ai-placeholder-text">დაამატეთ ყვავილები კალათაში და დააჭირეთ გენერირებას</p>
+          </div>
+          
+          <!-- Loading Spinner -->
+          <div class="ai-loader" id="aiLoader" style="display: none;">
+            <div class="spinner"></div>
+            <p class="ai-loader-text">Nano Banana AI ქმნის თქვენს თაიგულს...</p>
+          </div>
+
+          <!-- Generated Image -->
+          <img class="ai-generated-img" id="aiGeneratedImg" style="display: none;" alt="ხელოვნური ინტელექტის მიერ შექმნილი თაიგული" />
+        </div>
+      </div>
     </div>
   </section>
 

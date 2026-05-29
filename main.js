@@ -551,6 +551,11 @@ function updateCart() {
     // Render Total Price
     cartTotalPrice.textContent = `₾ ${calculateTotal()}`;
   }
+
+  // Update AI visualizer if available on custom.html
+  if (typeof updateAIVisualizerSummary === 'function') {
+    updateAIVisualizerSummary();
+  }
 }
 
 // ── Toggle Functions ──
@@ -766,4 +771,122 @@ document.addEventListener('DOMContentLoaded', () => {
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
   }
+
+  // Set up AI visualizer triggers
+  const aiGenBtn = document.getElementById('aiGenBtn');
+  if (aiGenBtn) {
+    aiGenBtn.addEventListener('click', handleAIVisualization);
+  }
+  updateAIVisualizerSummary();
 });
+
+// ── AI Bouquet Visualizer (Nano Banana AI) ──
+const stemPromptMap = {
+  101: "red roses",
+  102: "white roses",
+  103: "yellow spray roses",
+  104: "pink Dutch tulips",
+  105: "royal peonies",
+  106: "white gypsophila (baby's breath) flowers",
+  107: "eucalyptus branches",
+  108: "decorative lush green leaves",
+  109: "pink wrapping paper",
+  110: "black wrapping paper",
+  111: "white wrapping paper",
+  112: "beige wrapping paper",
+  113: "red wrapping paper",
+  114: "blue wrapping paper",
+  115: "green wrapping paper",
+  116: "purple wrapping paper",
+  117: "grey wrapping paper"
+};
+
+function updateAIVisualizerSummary() {
+  const aiSummaryList = document.getElementById('aiSummaryList');
+  const aiGenBtn = document.getElementById('aiGenBtn');
+  if (!aiSummaryList || !aiGenBtn) return;
+
+  const stemItems = cart.filter(item => singleStems.some(s => s.id === item.productId));
+
+  if (stemItems.length === 0) {
+    aiSummaryList.innerHTML = '<div class="ai-summary-empty">თქვენი თაიგული ცარიელია. აირჩიეთ ყვავილები ზემოთ მოცემული სიიდან და დაამატეთ კალათაში.</div>';
+    aiGenBtn.disabled = true;
+    aiGenBtn.classList.add('disabled');
+    return;
+  }
+
+  aiGenBtn.disabled = false;
+  aiGenBtn.classList.remove('disabled');
+  aiSummaryList.innerHTML = '';
+
+  stemItems.forEach(item => {
+    const product = getItemDetails(item.productId);
+    if (!product) return;
+
+    const row = document.createElement('div');
+    row.className = 'ai-summary-item';
+    row.innerHTML = `
+      <span>${product.name}</span>
+      <span class="ai-summary-qty">x${item.quantity}</span>
+    `;
+    aiSummaryList.appendChild(row);
+  });
+}
+
+function handleAIVisualization() {
+  const aiLoader = document.getElementById('aiLoader');
+  const aiPlaceholder = document.getElementById('aiPlaceholder');
+  const aiGeneratedImg = document.getElementById('aiGeneratedImg');
+  
+  if (!aiLoader || !aiPlaceholder || !aiGeneratedImg) return;
+
+  const stemItems = cart.filter(item => singleStems.some(s => s.id === item.productId));
+  if (stemItems.length === 0) return;
+
+  const flowerDescriptions = [];
+  let wrappingDescription = '';
+
+  stemItems.forEach(item => {
+    const promptWord = stemPromptMap[item.productId];
+    if (!promptWord) return;
+
+    if (item.productId >= 109 && item.productId <= 117) {
+      wrappingDescription = `wrapped in premium ${promptWord} with a matching silk ribbon`;
+    } else {
+      flowerDescriptions.push(`${item.quantity} ${promptWord}`);
+    }
+  });
+
+  let itemsText = flowerDescriptions.join(', ');
+  if (!itemsText) {
+    itemsText = 'fresh beautiful botanical flowers';
+  }
+
+  let finalWrapping = wrappingDescription ? wrappingDescription : 'as a clean, elegant hand-tied bunch';
+
+  const prompt = `A professional, stunning, luxury botanical florist bouquet containing: ${itemsText}. The bouquet is ${finalWrapping}. Studio background, neutral warm backdrop, soft natural dramatic lighting, photorealistic, ultra realistic, highly detailed, 8k resolution, commercial flower boutique photography style, masterpiece.`;
+
+  aiPlaceholder.style.display = 'none';
+  aiGeneratedImg.style.display = 'none';
+  aiGeneratedImg.classList.remove('loaded');
+  aiLoader.style.display = 'flex';
+
+  const seed = Math.floor(Math.random() * 10000000);
+  const generatorUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=800&nologo=true&seed=${seed}`;
+
+  const tempImg = new Image();
+  tempImg.src = generatorUrl;
+  tempImg.onload = () => {
+    aiLoader.style.display = 'none';
+    aiGeneratedImg.src = generatorUrl;
+    aiGeneratedImg.style.display = 'block';
+    setTimeout(() => {
+      aiGeneratedImg.classList.add('loaded');
+    }, 50);
+  };
+  tempImg.onerror = () => {
+    aiLoader.style.display = 'none';
+    aiPlaceholder.style.display = 'flex';
+    alert('ვერ მოხერხდა სურათის გენერირება. გთხოვთ სცადოთ მოგვიანებით.');
+  };
+}
